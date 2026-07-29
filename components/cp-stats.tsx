@@ -24,9 +24,16 @@ type CCStat = {
   profileUrl: string;
 };
 
+type LCStat = {
+  handle: string;
+  solved: number;
+  ranking: number;
+  profileUrl: string;
+};
+
 type CPData = {
   cf1: CFStat | null;
-  cf2: CFStat | null;
+  lc: LCStat | null;
   cc: CCStat | null;
 };
 
@@ -144,6 +151,45 @@ function CFCard({ data, index }: { data: CFStat; index: number }) {
   );
 }
 
+function LCCard({ data }: { data: LCStat }) {
+  return (
+    <motion.a
+      href={data.profileUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, delay: 0.15 }}
+      className="group relative rounded-2xl border border-white/10 bg-white/[0.03] p-7 backdrop-blur-sm hover:bg-white/[0.06] hover:border-white/20 transition-all duration-300 hover:shadow-[0_0_30px_rgba(234,179,8,0.1)] cursor-pointer"
+    >
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-full bg-yellow-500 shadow-[0_0_8px_rgba(234,179,8,0.8)] animate-pulse" />
+          <span className="font-mono text-xs text-white/40 uppercase tracking-widest">LeetCode</span>
+        </div>
+        <svg className="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </div>
+
+      <p className="font-mono text-lg font-bold text-white mb-1">@{data.handle}</p>
+      <p className="text-sm font-medium mb-6 text-orange-400">Knight</p>
+
+      <div className="grid grid-cols-2 gap-3">
+        <div className="text-center bg-white/5 rounded-xl p-3 border border-white/5">
+          <p className="text-xl font-bold text-white"><AnimatedNumber value={data.solved} /></p>
+          <p className="text-xs text-white/40 mt-0.5">Solved</p>
+        </div>
+        <div className="text-center bg-white/5 rounded-xl p-3 border border-white/5">
+          <p className="text-xl font-bold text-white"><AnimatedNumber value={data.ranking} /></p>
+          <p className="text-xs text-white/40 mt-0.5">Global Rank</p>
+        </div>
+      </div>
+    </motion.a>
+  );
+}
+
 function CCCard({ data }: { data: CCStat }) {
   return (
     <motion.a
@@ -229,11 +275,12 @@ export default function CPStats() {
 
 
         {/* Static Global Ranks Callout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {[
-            { platform: "Codeforces", rank: "#4,320", context: "Round 1059 (Div. 3)", badge: "Pupil", rankColor: "text-green-400", badgeBg: "bg-green-500/10 border-green-500/20 text-green-400" },
+            { platform: "Codeforces", rank: "#2,001", context: "Round 1107 (Div. 3)", badge: "Pupil", rankColor: "text-green-400", badgeBg: "bg-green-500/10 border-green-500/20 text-green-400" },
+            { platform: "LeetCode",   rank: "Knight", context: "Global Ranking",      badge: "Top 5%", rankColor: "text-orange-400", badgeBg: "bg-orange-500/10 border-orange-500/20 text-orange-400" },
+            { platform: "CodeChef",   rank: "#471",   context: "Starters 209",         badge: "Global", rankColor: "text-red-400",    badgeBg: "bg-red-500/10 border-red-500/20 text-red-400" },
             { platform: "Codeforces", rank: "#3,530", context: "Pinely Round 5",      badge: "Global", rankColor: "text-blue-400",  badgeBg: "bg-blue-500/10 border-blue-500/20 text-blue-400"  },
-            { platform: "CodeChef",   rank: "#471",   context: "Starters 209",         badge: "Global", rankColor: "text-orange-400", badgeBg: "bg-orange-500/10 border-orange-500/20 text-orange-400" },
           ].map((a, i) => (
             <motion.div
               key={i}
@@ -274,7 +321,7 @@ export default function CPStats() {
         {!loading && !error && data && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {data.cf1 && <CFCard data={data.cf1} index={0} />}
-            {data.cf2 && <CFCard data={data.cf2} index={1} />}
+            {data.lc && <LCCard data={data.lc} />}
             {data.cc  && <CCCard data={data.cc} />}
           </div>
         )}

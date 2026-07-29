@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
-const CF_HANDLES = ["Vedant_Cool_Karni", "SarvamKhalvidam"];
+const CF_HANDLE = "Vedant_Cool_Karni";
+const LC_HANDLE = "Vedant_Cool_Karni";
 const CC_HANDLE = "same_vigor_92";
 
 async function getCFStats(handle: string) {
@@ -83,12 +84,54 @@ async function getCCStats(handle: string) {
     }
 }
 
+async function getLCStats(handle: string) {
+    try {
+        const query = `
+            query getUserProfile($username: String!) {
+                matchedUser(username: $username) {
+                    submitStats {
+                        acSubmissionNum {
+                            difficulty
+                            count
+                        }
+                    }
+                    profile {
+                        ranking
+                    }
+                }
+            }
+        `;
+        const res = await fetch("https://leetcode.com/graphql", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ query, variables: { username: handle } }),
+            next: { revalidate: 3600 }
+        });
+        const data = await res.json();
+        
+        const matchedUser = data?.data?.matchedUser;
+        if (!matchedUser) return null;
+        
+        const solved = matchedUser.submitStats.acSubmissionNum.find((item: any) => item.difficulty === "All")?.count || 0;
+        const ranking = matchedUser.profile.ranking;
+        
+        return {
+            handle,
+            solved,
+            ranking,
+            profileUrl: `https://leetcode.com/${handle}`
+        };
+    } catch {
+        return null;
+    }
+}
+
 export async function GET() {
-    const [cf1, cf2, cc] = await Promise.all([
-        getCFStats(CF_HANDLES[0]),
-        getCFStats(CF_HANDLES[1]),
+    const [cf1, lc, cc] = await Promise.all([
+        getCFStats(CF_HANDLE),
+        getLCStats(LC_HANDLE),
         getCCStats(CC_HANDLE),
     ]);
 
-    return NextResponse.json({ cf1, cf2, cc });
+    return NextResponse.json({ cf1, lc, cc });
 }

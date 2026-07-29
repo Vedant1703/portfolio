@@ -6,16 +6,16 @@ import { motion, AnimatePresence } from "framer-motion";
 const PROJECTS = [
   {
     id: 1,
-    title: "🛡️ Sentinel",
+    title: "Sentinel",
     tagline: "Distributed Rate Limiting System",
     description:
-      "Architected a distributed rate limiting system in Go using Token Bucket and Sliding Window algorithms, enforcing consistent request limits across horizontally scaled service instances.",
+      "Architected a distributed rate-limiting system in Go capable of handling 50,000+ RPS per node with a 2ms p99 latency overhead.",
     bullets: [
-      "High-concurrency in-memory engine using goroutines, mutex & atomic ops for thread-safe, low-latency processing",
-      "Redis-backed distributed coordination with HTTP middleware for global rate-limit consistency",
-      "Fail-fast per-client request rejection with minimal performance overhead",
+      "Optimized high-concurrency request processing leveraging goroutines and atomic operations; implemented a thread-safe cleanup sweeper.",
+      "Engineered HTTP middleware featuring longest-prefix route matching to secure nested subpaths.",
+      "Integrated a path-labeled Prometheus exporter to track allowed and blocked requests globally with 1ms precision.",
     ],
-    tech: ["Go (Golang)", "Redis", "REST APIs", "Goroutines", "Docker", "Next.js 14"],
+    tech: ["Go (Golang)", "Redis", "REST APIs", "Goroutines", "Docker", "Prometheus"],
     link: "#",
     github: "https://github.com/Vedant1703/Sentinel",
     color: "from-cyan-500/20 to-blue-600/20",
@@ -30,16 +30,16 @@ const PROJECTS = [
   },
   {
     id: 2,
-    title: "🍽️ BawarchiAI",
-    tagline: "AI-Driven Food Waste Reduction Platform",
+    title: "BawarchiAI",
+    tagline: "AI-Driven Food Waste Reduction",
     description:
-      "End-to-end AI-powered platform for institutional kitchens that forecasts real food demand using historical and contextual data to identify surplus food in advance.",
+      "End-to-end AI-powered platform for institutional kitchens that forecasts real food demand using historical and contextual data.",
     bullets: [
-      "Scalable Go backend + containerized Python ML service (XGBoost) for surplus detection & NGO redistribution",
-      "Role-based dashboards for kitchens & NGOs tracking food saved, meals served, and CO₂ reduction",
-      "Full data pipeline: kitchen ingestion → surplus detection → redistribution workflows → model retraining",
+      "Architected a scalable microservices backend in Go (Gin) and a containerized FastAPI ML service.",
+      "Engineered a hybrid forecasting algorithm blending 5-Fold CV XGBoost (97.9% R²) with historical baselines (350ms latency).",
+      "Developed responsive Next.js dashboards featuring real-time canteen telemetry enabling seamless surplus redistribution.",
     ],
-    tech: ["Next.js", "TypeScript", "Go", "PostgreSQL", "Python", "XGBoost", "Docker", "shadcn/ui"],
+    tech: ["Next.js", "Go", "Supabase", "Python", "FastAPI", "XGBoost", "Docker"],
     link: "#",
     github: "https://github.com/Vedant1703/Bawarchi.AI",
     color: "from-emerald-500/20 to-green-600/20",
@@ -54,25 +54,25 @@ const PROJECTS = [
   },
   {
     id: 3,
-    title: "⚡ SlayerConnect",
-    tagline: "Full-Stack Real-Time Messaging System",
+    title: "Opensource Compass",
+    tagline: "AI Open Source Discovery",
     description:
-      "Full-stack real-time messaging platform using Socket.IO (WebSockets) supporting low-latency, bi-directional communication between concurrent users with an anime-inspired UI.",
+      "Microservices-based platform with 5 Go services to rank GitHub repositories based on issue accessibility and maintainer responsiveness.",
     bullets: [
-      "Event-driven Node.js backend with JWT auth, socket lifecycle management & real-time notifications",
-      "Eliminated N+1 queries via MongoDB aggregation & O(1) message routing via socket-to-user mapping",
-      "Secure, idempotent message state updates with Cloudinary for media delivery",
+      "Designed an AI enrichment pipeline using Groq (Mixtral) and Gemini to generate contribution guides for first-time contributors.",
+      "Built a concurrent real-time notification infrastructure using Go WebSockets and GitHub OAuth authentication.",
+      "Led development during a FOSS event, onboarding 10+ contributors and maintaining workflows through issue triaging.",
     ],
-    tech: ["Node.js", "Express.js", "Socket.IO", "MongoDB", "JavaScript", "JWT", "Cloudinary", "WebSockets"],
-    link: "https://slayerconnect.vercel.app/",
-    github: "https://github.com/Vedant1703/Slayerconnect",
+    tech: ["Next.js 15", "TypeScript", "Go", "Supabase", "WebSockets", "Groq", "Docker"],
+    link: "#",
+    github: "https://github.com/Vedant1703/opensource-compass",
     color: "from-orange-500/20 to-red-600/20",
     shadow: "shadow-[0_0_30px_rgba(249,115,22,0.3)]",
     border: "border-orange-500/30",
     accentColor: "from-orange-400 to-red-500",
     icon: (
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-12 h-12 text-orange-400">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
       </svg>
     ),
   },
@@ -182,7 +182,7 @@ export default function Projects() {
               >
                 
                 {/* Left visual panel */}
-                <div className={`w-full md:w-2/5 h-48 md:h-full bg-gradient-to-br ${project.color} relative overflow-hidden flex items-center justify-center flex-shrink-0`}>
+                <div className={`w-full md:w-2/5 h-48 md:h-auto md:self-stretch bg-gradient-to-br ${project.color} relative overflow-hidden flex items-center justify-center flex-shrink-0`}>
                   <div className="absolute inset-0 opacity-20"
                     style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '28px 28px' }}
                   />
@@ -197,7 +197,7 @@ export default function Projects() {
                     <div className={`p-4 md:p-6 rounded-2xl bg-black/50 backdrop-blur-sm border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)]`}>
                       {project.icon}
                     </div>
-                    <span className={`font-mono text-[10px] md:text-xs tracking-widest text-transparent bg-clip-text bg-gradient-to-r ${project.accentColor} uppercase text-center px-4 md:px-2`}>
+                    <span className={`font-mono text-[10px] md:text-xs tracking-widest text-transparent bg-clip-text bg-gradient-to-r ${project.accentColor} uppercase text-center px-4 md:px-2 max-w-[200px] leading-relaxed`}>
                       {project.tagline}
                     </span>
                   </motion.div>
@@ -205,14 +205,14 @@ export default function Projects() {
 
                 {/* Right content area */}
                 <div className="w-full md:w-3/5 p-6 sm:p-8 md:p-10 flex flex-col justify-center">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">{project.title}</h3>
-                  <p className="text-white/55 mb-4 leading-relaxed text-xs sm:text-sm">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3">{project.title}</h3>
+                  <p className="text-white/60 mb-5 leading-relaxed text-sm">
                     {project.description}
                   </p>
 
-                  <ul className="space-y-2 mb-5">
+                  <ul className="space-y-3 mb-6">
                     {project.bullets.map((b, i) => (
-                      <li key={i} className="flex items-start gap-2 text-[11px] sm:text-xs text-white/60 leading-relaxed">
+                      <li key={i} className="flex items-start gap-3 text-xs sm:text-sm text-white/50 leading-relaxed">
                         <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-gradient-to-r ${project.accentColor}`} />
                         {b}
                       </li>

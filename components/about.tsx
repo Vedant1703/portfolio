@@ -8,7 +8,7 @@ const PHOTO_URL = "/Vedant.png";
 const highlights = [
   { icon: "🏛️", label: "Institution", value: "IIIT Lucknow" },
   { icon: "📚", label: "Degree",      value: "BTech CS & Business" },
-  { icon: "✨", label: "CGPA",        value: "8.57 / 10" },
+  { icon: "✨", label: "CGPA",        value: "8.62 / 10" },
   { icon: "📅", label: "Batch",       value: "2024 – 2028" },
 ];
 
@@ -93,7 +93,7 @@ const techStack = [
 ];
 
 const cpAchievements = [
-  { platform: "Codeforces", rank: "#4,320", context: "Round 1059 (Div. 3)", badge: "Pupil", rankColor: "text-green-400", badgeBg: "bg-green-500/10 border-green-500/20 text-green-400" },
+  { platform: "Codeforces", rank: "#2,001", context: "Round 1107 (Div. 3)", badge: "Pupil", rankColor: "text-green-400", badgeBg: "bg-green-500/10 border-green-500/20 text-green-400" },
   { platform: "Codeforces", rank: "#3,530", context: "Pinely Round 5",      badge: "Global", rankColor: "text-blue-400",  badgeBg: "bg-blue-500/10 border-blue-500/20 text-blue-400"  },
   { platform: "CodeChef",   rank: "#471",   context: "Starters 209",         badge: "Global", rankColor: "text-orange-400", badgeBg: "bg-orange-500/10 border-orange-500/20 text-orange-400" },
 ];
@@ -154,17 +154,15 @@ export default function About() {
 
             <div className="space-y-4 text-base sm:text-lg leading-relaxed text-white/60">
               <p>
-                I&apos;m a <span className="text-white font-medium">BTech sophomore</span> in Computer Science &amp; Business at{" "}
+                I&apos;m a <span className="text-white font-medium">3rd-year BTech student</span> in Computer Science &amp; Business at{" "}
                 <span className="text-cyan-400 font-medium">IIIT Lucknow</span>, with a CGPA of{" "}
-                <span className="text-white font-medium">8.57</span>.
+                <span className="text-white font-medium">8.62</span>.
               </p>
               <p>
-                I love building systems — from distributed rate limiters in <span className="text-white font-medium">Go</span> to
-                real-time messaging platforms and AI-powered food-waste dashboards. I thrive at the
-                intersection of clean code, scalable architecture, and polished UX.
+                I am deeply passionate about architecting scalable systems and AI-driven platforms. My work ranges from building distributed rate limiters and high-concurrency microservices in <span className="text-white font-medium">Go</span>, to engineering full-stack machine learning applications.
               </p>
               <p>
-                Outside of code I compete in competitive programming, contribute to the{" "}
+                Outside of development, I am an active competitive programmer and a two-time hackathon winner (DevMatrix &amp; Reckon 7.0). I also contribute to the{" "}
                 <span className="text-white font-medium">Axios Tech Club&apos;s Web Wing</span>, and
                 occasionally dance with Zephyr.
               </p>

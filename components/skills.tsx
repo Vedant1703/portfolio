@@ -12,7 +12,7 @@ const SKILL_CATEGORIES = [
     borderColor: "border-purple-500/50",
     glowColor: "shadow-[0_0_20px_rgba(168,85,247,0.15)]",
     dotColor: "bg-purple-400",
-    skills: ["Go", "TypeScript", "JavaScript", "C++", "Python"],
+    skills: ["Go", "C++", "JavaScript", "TypeScript", "Python"],
   },
   {
     id: "frontend",
@@ -21,7 +21,7 @@ const SKILL_CATEGORIES = [
     borderColor: "border-cyan-500/50",
     glowColor: "shadow-[0_0_20px_rgba(6,182,212,0.15)]",
     dotColor: "bg-cyan-400",
-    skills: ["React.js", "Next.js", "Tailwind CSS", "shadcn/ui", "Framer Motion"],
+    skills: ["React.js", "Next.js", "Tailwind CSS", "Framer Motion", "shadcn/ui"],
   },
   {
     id: "backend",
@@ -30,7 +30,7 @@ const SKILL_CATEGORIES = [
     borderColor: "border-orange-500/50",
     glowColor: "shadow-[0_0_20px_rgba(249,115,22,0.15)]",
     dotColor: "bg-orange-400",
-    skills: ["Node.js", "Express.js", "REST APIs", "WebSockets", "JWT", "Goroutines"],
+    skills: ["Node.js", "Express.js", "Go (Gin)", "FastAPI", "REST APIs", "WebSockets"],
   },
   {
     id: "databases",
@@ -39,7 +39,7 @@ const SKILL_CATEGORIES = [
     borderColor: "border-emerald-500/50",
     glowColor: "shadow-[0_0_20px_rgba(16,185,129,0.15)]",
     dotColor: "bg-emerald-400",
-    skills: ["PostgreSQL", "MongoDB", "Redis"],
+    skills: ["PostgreSQL", "MongoDB", "Redis", "Supabase"],
   },
   {
     id: "ai",
@@ -48,7 +48,7 @@ const SKILL_CATEGORIES = [
     borderColor: "border-pink-500/50",
     glowColor: "shadow-[0_0_20px_rgba(236,72,153,0.15)]",
     dotColor: "bg-pink-400",
-    skills: ["XGBoost", "Scikit-Learn", "Python ML Pipelines"],
+    skills: ["XGBoost", "Groq (Mixtral)", "Google Gemini", "LLM Pipelines"],
   },
   {
     id: "devops",
@@ -57,7 +57,7 @@ const SKILL_CATEGORIES = [
     borderColor: "border-yellow-500/50",
     glowColor: "shadow-[0_0_20px_rgba(234,179,8,0.15)]",
     dotColor: "bg-yellow-400",
-    skills: ["Docker", "Git", "Linux", "Vercel", "Render", "Lua"],
+    skills: ["Git", "Docker", "Vercel", "Render", "Linux"],
   },
 ];
 
@@ -108,8 +108,7 @@ export default function Skills() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {SKILL_CATEGORIES.map((category) => (
             <motion.div
@@ -117,7 +116,7 @@ export default function Skills() {
               variants={cardVariants}
               onMouseEnter={() => setHoveredCategory(category.id)}
               onMouseLeave={() => setHoveredCategory(null)}
-              className={`relative group rounded-2xl border-l-4 ${category.borderColor} bg-white/[0.03] border border-white/5 border-l-[4px] p-8 backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.06] ${hoveredCategory === category.id ? category.glowColor : ""}`}
+              className={`relative group rounded-2xl border-l-4 ${category.borderColor} bg-white/[0.03] border border-white/5 border-l-[4px] p-6 backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.06] ${hoveredCategory === category.id ? category.glowColor : ""}`}
             >
               {/* Category Header */}
               <div className="flex items-center gap-3 mb-6">
